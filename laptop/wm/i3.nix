@@ -1,5 +1,13 @@
 {pkgs, ...}:
 {
+  boot = {
+    plymouth = {
+      enable = true;
+      theme = "catppuccin-mocha";
+      themePackages = [(pkgs.catppuccin-plymouth.override {variant = "mocha";})];
+    };
+  };
+
   services.displayManager.ly.enable = true;
 
   services.xserver = {
@@ -12,6 +20,11 @@
   services.libinput.enable = true;
   programs.i3lock.enable = true;
   programs.light.enable = true;
+
+  services.dbus = {
+    enable = true;
+    packages = [ pkgs.dconf ];
+  };
 
   services.picom = {
     enable = true;
@@ -35,18 +48,25 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-    ];
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome ];
     config = {
       common = {
         default = [
           "gtk"
+          "gnome"
         ];
+      };
+      i3 = {
+        default = [ "gtk" "gnome" ];
+        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
       };
     };
   };
   environment.systemPackages = with pkgs; [
+    # xdg-desktop-portal-gtk
+    # xdg-desktop-portal-gnome
+     gnome-keyring
+
     adwaita-icon-theme
     feh
     

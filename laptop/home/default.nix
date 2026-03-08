@@ -4,6 +4,8 @@
     ./applications
     ./devtools
     ./config
+
+    ./fcitx5.nix
   ];
 
   home.username = "zenthus";
