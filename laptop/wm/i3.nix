@@ -62,9 +62,16 @@
       };
     };
   };
+
+  environment.sessionVariables = {
+    # 指定輸入法框架
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx";
+    # kitty
+    GLFW_IM_MODULE = "ibus";
+  };
   environment.systemPackages = with pkgs; [
-    # xdg-desktop-portal-gtk
-    # xdg-desktop-portal-gnome
      gnome-keyring
 
     adwaita-icon-theme

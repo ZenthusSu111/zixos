@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{pkgs, inputs, ...}:
 {
   imports = [
     ./applications
@@ -6,6 +6,7 @@
     ./config
 
     ./fcitx5.nix
+    "${inputs.self}/emacs/emacs.nix"
   ];
 
   home.username = "zenthus";
