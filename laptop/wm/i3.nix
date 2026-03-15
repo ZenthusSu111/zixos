@@ -32,29 +32,36 @@
     ];
   };
 
-  services.dbus = {
-    enable = true;
-    packages = [pkgs.dconf];
-  };
-
-  services.picom = {
-    enable = true;
-    backend = "glx";
-    vSync = true;
-    fade = false;
-    shadow = false;
-    activeOpacity = 1.0;
-    inactiveOpacity = 1.0;
-    menuOpacity = 1.0;
-
-    settings = {
-      use-damage = true;
-      unredir-if-possible = false;
+  services = {
+    dbus = {
+      enable = true;
+      packages = [pkgs.dconf];
     };
-  };
 
-  services.dunst = {
-    enable = true;
+    picom = {
+      enable = true;
+      backend = "glx";
+      vSync = true;
+      fade = false;
+      shadow = false;
+      activeOpacity = 1.0;
+      inactiveOpacity = 1.0;
+      menuOpacity = 1.0;
+
+      settings = {
+        use-damage = true;
+        unredir-if-possible = false;
+      };
+    };
+
+    dunst = {
+      enable = true;
+    };
+
+    # enable thunar can detect USB
+    gvfs = {
+      enable = true;
+    };
   };
 
   xdg.portal = {
