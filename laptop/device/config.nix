@@ -1,11 +1,14 @@
-{pkgs, ...}:
 {
+  pkgs,
+  username,
+  ...
+}: {
   networking.hostName = "zix";
-  users.users.zenthus = {
+  users.users.${username} = {
     shell = pkgs.nushell;
     isNormalUser = true;
-    description = "zenthus";
-    extraGroups = [ "networkmanager" "wheel" "video" ];
+    description = "IanSu";
+    extraGroups = ["networkmanager" "wheel" "video"];
   };
 
   nixpkgs.config.allowUnfree = true;

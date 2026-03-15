@@ -1,6 +1,14 @@
 {
   description = "my nixos config";
   inputs = {
+    emacs-config = {
+      url = "github:ZenthusSu111/emacs";
+      flake = false;
+    };
+    nvim-config = {
+      url = "github:ZenthusSu111/nvim";
+      flake = false;
+    };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     home-manager = {
@@ -26,10 +34,12 @@
     sops-nix,
     disko,
     ...
-  } @ inputs: {
+  } @ inputs: let
+    username = "IanSu";
+  in {
     nixosConfigurations.zix = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = {inherit inputs;};
+      specialArgs = {inherit inputs username;};
       modules = [
         nix-flatpak.nixosModules.nix-flatpak
         nixos-hardware.nixosModules.asus-rog-gl552vw
@@ -43,9 +53,9 @@
             backupFileExtension = "backup";
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.zenthus = ./laptop/home;
+            users.${username} = ./laptop/home;
             extraSpecialArgs = {
-              inherit inputs;
+              inherit inputs username;
             };
           };
         }

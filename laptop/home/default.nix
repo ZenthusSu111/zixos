@@ -1,17 +1,22 @@
-{pkgs, inputs, ...}:
 {
+  pkgs,
+  lib,
+  inputs,
+  username,
+  ...
+}: {
   imports = [
     ./applications
     ./devtools
     ./config
 
     ./fcitx5.nix
-    "${inputs.self}/emacs/emacs.nix"
-    "${inputs.self}/nvim/nvim.nix"
+    "${inputs.emacs-config}/emacs.nix"
+    "${inputs.nvim-config}/nvim.nix"
   ];
 
-  home.username = "zenthus";
-  home.homeDirectory = "/home/zenthus";
+  home.username = username;
+  home.homeDirectory = lib.mkForce "/home/${username}";
 
   home.stateVersion = "25.11";
   programs.home-manager.enable = true;

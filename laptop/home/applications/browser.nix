@@ -2,6 +2,6 @@
 {
   programs.chromium = {
     enable = true;
-    package = pkgs.vivaldi;
+    package = pkgs.google-chrome;
   };
 }
