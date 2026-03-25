@@ -35,7 +35,7 @@
     disko,
     ...
   } @ inputs: let
-    username = "IanSu";
+    username = "iansu";
   in {
     nixosConfigurations.zix = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
